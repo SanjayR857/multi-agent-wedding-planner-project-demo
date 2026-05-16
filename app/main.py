@@ -1,11 +1,11 @@
-from tenacity import asyncio
+import asyncio
 from app.llm_services import main_agent
 from app.models import WeddingState
 from langchain.messages import HumanMessage
 
 
 async def run_wedding_agent():
-    
+
     response = await main_agent.ainvoke(
         {
             "messages": [HumanMessage(content="I'm from London and I'd like a wedding in Paris for 100 guests, jazz-genre")],

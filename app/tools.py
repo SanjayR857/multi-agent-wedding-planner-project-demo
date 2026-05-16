@@ -29,7 +29,7 @@ def web_search(query: str, search_number: int =1, max_search_number: int= 11) ->
         return {"message": "Error searching the web: " + str(e)}
 
 
-db = SQLDatabase.from_uri("sqlite:///Chinook.db")
+db = SQLDatabase.from_uri("sqlite:///resources/Chinook.db")
 
 
 @tool
@@ -75,9 +75,9 @@ async def update_state(origin: str, destination: str, guest_count: str, genre: s
     the information available to other tools."""
     
     return Command(update={
-        "origin": origin,
-        "destination": destination,
-        "guest_count": guest_count,
-        "genre": genre,
+        "origin": runtime.state['origin'],
+        "destination": runtime.state['destination'],
+        "guest_count": runtime.state['guest_count'],
+        "genre": runtime.state['genre'],
         "messages": [ToolMessage(content="State updated successfully", tool_call_id=runtime.tool_call_id)]
     })
